@@ -1,0 +1,940 @@
+<!DOCTYPE html>
+<html lang="id">
+  <link rel="stylesheet" href="style.css">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portfolio | Muhammad Sultan Arif</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --primary: #a855f7;
+      --secondary: #3b82f6;
+      --dark: #020617;
+      --darker: #0f172a;
+      --text-white: #ffffff;
+      --text-gray: #94a3b8;
+      --text-muted: #64748b;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: linear-gradient(to bottom, #020617, #0f172a, #020617);
+      color: var(--text-white);
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* Navbar */
+    .navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 50;
+      background: rgba(2, 6, 23, 0.8);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      padding: 1rem 0;
+    }
+
+    .navbar .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 1rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .navbar-brand {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: var(--text-white);
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 1.125rem;
+      transition: color 0.3s;
+    }
+
+    .navbar-brand:hover {
+      color: var(--primary);
+    }
+
+    .navbar-brand svg {
+      width: 1.5rem;
+      height: 1.5rem;
+    }
+
+    .navbar-nav {
+      display: flex;
+      gap: 0.25rem;
+    }
+
+    .navbar-nav a {
+      color: var(--text-gray);
+      text-decoration: none;
+      padding: 0.5rem 1rem;
+      border-radius: 0.5rem;
+      font-size: 0.875rem;
+      font-weight: 500;
+      transition: all 0.3s;
+    }
+
+    .navbar-nav a:hover,
+    .navbar-nav a.active {
+      color: var(--primary);
+      background: rgba(168, 85, 247, 0.1);
+    }
+
+    .menu-toggle {
+      display: none;
+      background: none;
+      border: none;
+      color: var(--text-gray);
+      cursor: pointer;
+      padding: 0.5rem;
+    }
+
+    /* Mobile Navigation */
+    @media (max-width: 768px) {
+      .navbar-nav {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: rgba(2, 6, 23, 0.95);
+        backdrop-filter: blur(10px);
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        padding: 0.75rem 1rem;
+      }
+
+      .navbar-nav.show {
+        display: flex;
+        flex-direction: column;
+        gap: 0.25rem;
+      }
+
+      .menu-toggle {
+        display: block;
+      }
+    }
+
+    /* Hero Section */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+      padding-top: 4rem;
+    }
+
+    .glow-1,
+    .glow-2 {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(3rem);
+      animation: pulse 2s ease-in-out infinite;
+    }
+
+    .glow-1 {
+      width: 24rem;
+      height: 24rem;
+      background: rgba(168, 85, 247, 0.2);
+      top: 25%;
+      left: 25%;
+    }
+
+    .glow-2 {
+      width: 24rem;
+      height: 24rem;
+      background: rgba(59, 130, 246, 0.2);
+      bottom: 25%;
+      right: 25%;
+      animation-delay: 1s;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 0.5; }
+      50% { opacity: 1; }
+    }
+
+    .hero-content {
+      text-align: center;
+      max-width: 64rem;
+      margin: 0 auto;
+      padding: 0 1rem;
+      position: relative;
+      z-index: 10;
+    }
+
+    .profile-wrapper {
+      display: inline-block;
+      margin-bottom: 2rem;
+      position: relative;
+    }
+
+    .profile-image {
+      width: 12rem;
+      height: 12rem;
+      border-radius: 50%;
+      background: linear-gradient(to bottom right, var(--primary), var(--secondary));
+      padding: 0.25rem;
+      box-shadow: 0 25px 50px -12px rgba(168, 85, 247, 0.3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .profile-image-inner {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      background: var(--darker);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .profile-image-inner svg {
+      width: 6rem;
+      height: 6rem;
+      color: var(--text-gray);
+    }
+
+    .status-badge {
+      position: absolute;
+      bottom: -0.5rem;
+      right: -0.5rem;
+      width: 3rem;
+      height: 3rem;
+      background: #22c55e;
+      border-radius: 50%;
+      border: 4px solid var(--dark);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.25rem;
+    }
+
+    .welcome {
+      color: #d8b4fe;
+      font-size: 1.125rem;
+      margin-bottom: 1rem;
+      animation: fadeIn 0.8s ease-out;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .hero-title {
+      font-size: 3rem;
+      font-weight: 900;
+      background: linear-gradient(to right, var(--text-white), #e9d5ff, var(--primary));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 1rem;
+    }
+
+    .hero-subtitle {
+      font-size: 1.125rem;
+      color: var(--text-gray);
+      margin-bottom: 2rem;
+      max-width: 32rem;
+      margin-left: auto;
+      margin-right: auto;
+      line-height: 1.75;
+    }
+
+    .cta-buttons {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      padding: 1rem 2rem;
+      border-radius: 0.5rem;
+      font-weight: 500;
+      font-size: 1rem;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      transition: all 0.3s;
+    }
+
+    .btn-primary {
+      background: linear-gradient(to right, var(--primary), var(--secondary));
+      color: var(--text-white);
+      box-shadow: 0 10px 15px -3px rgba(168, 85, 247, 0.3);
+    }
+
+    .btn-primary:hover {
+      background: linear-gradient(to right, #9333ea, #2563eb);
+      transform: translateY(-2px);
+    }
+
+    .btn-outline {
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      color: var(--text-white);
+    }
+
+    .btn-outline:hover {
+      background: rgba(255, 255, 255, 0.1);
+      border-color: rgba(255, 255, 255, 0.3);
+    }
+
+    .scroll-down {
+      position: absolute;
+      bottom: 2rem;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    .scroll-down a {
+      color: rgba(255, 255, 255, 0.5);
+      transition: color 0.3s;
+    }
+
+    .scroll-down a:hover {
+      color: var(--text-white);
+    }
+
+    .scroll-down svg {
+      width: 1.5rem;
+      height: 1.5rem;
+      animation: bounce 2s infinite;
+    }
+
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+
+    /* Sections */
+    section {
+      padding: 5rem 1rem;
+    }
+
+    .section-title {
+      font-size: 2.25rem;
+      font-weight: 700;
+      color: var(--text-white);
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    /* About Card */
+    .about-card {
+      max-width: 48rem;
+      margin: 0 auto;
+      background: rgba(15, 23, 42, 0.5);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 0.75rem;
+      padding: 2rem;
+    }
+
+    .about-title {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--text-white);
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .separator {
+      height: 1px;
+      background: rgba(255, 255, 255, 0.1);
+      margin: 1rem 0;
+    }
+
+    .about-text {
+      color: var(--text-gray);
+      font-size: 1.125rem;
+      line-height: 1.75;
+    }
+
+    /* Skills Grid */
+    .skills-section {
+      background: rgba(15, 23, 42, 0.3);
+    }
+
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
+      gap: 1.5rem;
+    }
+
+    .skill-card {
+      background: rgba(15, 23, 42, 0.5);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 0.75rem;
+      padding: 1.5rem;
+      transition: all 0.3s;
+    }
+
+    .skill-card:hover {
+      border-color: rgba(255, 255, 255, 0.2);
+      transform: scale(1.05);
+    }
+
+    .skill-header {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin-bottom: 1rem;
+    }
+
+    .skill-icon {
+      padding: 0.75rem;
+      border-radius: 0.5rem;
+    }
+
+    .skill-icon svg {
+      width: 1.5rem;
+      height: 1.5rem;
+    }
+
+    .skill-icon.blue {
+      background: rgba(59, 130, 246, 0.1);
+    }
+
+    .skill-icon.blue svg {
+      color: #3b82f6;
+    }
+
+    .skill-icon.green {
+      background: rgba(34, 197, 94, 0.1);
+    }
+
+    .skill-icon.green svg {
+      color: #22c55e;
+    }
+
+    .skill-icon.pink {
+      background: rgba(236, 72, 153, 0.1);
+    }
+
+    .skill-icon.pink svg {
+      color: #ec4899;
+    }
+
+    .skill-icon.orange {
+      background: rgba(249, 115, 22, 0.1);
+    }
+
+    .skill-icon.orange svg {
+      color: #f97316;
+    }
+
+    .skill-title {
+      color: var(--text-white);
+      font-size: 1.125rem;
+      font-weight: 600;
+    }
+
+    .skill-list {
+      list-style: none;
+    }
+
+    .skill-list li {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: var(--text-gray);
+      font-size: 0.875rem;
+      padding: 0.25rem 0;
+    }
+
+    .skill-dot {
+      width: 0.375rem;
+      height: 0.375rem;
+      border-radius: 50%;
+    }
+
+    .skill-dot.blue { background: #3b82f6; }
+    .skill-dot.green { background: #22c55e; }
+    .skill-dot.pink { background: #ec4899; }
+    .skill-dot.orange { background: #f97316; }
+
+    /* Contact Section */
+    .contact-card {
+      max-width: 32rem;
+      margin: 0 auto;
+      background: linear-gradient(to bottom right, rgba(168, 85, 247, 0.1), rgba(59, 130, 246, 0.1));
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 0.75rem;
+      padding: 2rem;
+      text-align: center;
+    }
+
+    .contact-text {
+      font-size: 1.25rem;
+      color: var(--text-gray);
+      margin-bottom: 2rem;
+    }
+
+    .contact-links {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+
+    .contact-link {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.75rem;
+      padding: 1rem;
+      background: rgba(15, 23, 42, 0.5);
+      border-radius: 0.5rem;
+      color: var(--text-white);
+      text-decoration: none;
+      transition: all 0.3s;
+    }
+
+    .contact-link:hover {
+      background: rgba(15, 23, 42, 0.7);
+    }
+
+    .contact-link svg {
+      width: 1.25rem;
+      height: 1.25rem;
+    }
+
+    .social-links {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .social-link {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 3rem;
+      height: 3rem;
+      padding: 0.75rem;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 50%;
+      color: var(--text-gray);
+      text-decoration: none;
+      transition: all 0.3s;
+    }
+
+    .social-link:hover {
+      background: rgba(255, 255, 255, 0.1);
+      color: var(--text-white);
+      transform: scale(1.1);
+    }
+
+    .social-link svg {
+      width: 1.5rem;
+      height: 1.5rem;
+    }
+
+    /* Footer */
+    .footer {
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      background: rgba(2, 6, 23, 0.8);
+      backdrop-filter: blur(10px);
+      padding: 2rem 1rem;
+      margin-top: auto;
+    }
+
+    .footer-content {
+      text-align: center;
+    }
+
+    .footer-social {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      margin-bottom: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .footer-social .social-link {
+      width: 2.5rem;
+      height: 2.5rem;
+      padding: 0.5rem;
+    }
+
+    .footer-social .social-link svg {
+      width: 1.25rem;
+      height: 1.25rem;
+    }
+
+    .footer-separator {
+      height: 1px;
+      background: rgba(255, 255, 255, 0.1);
+      max-width: 16rem;
+      margin: 1rem auto;
+    }
+
+    .copyright {
+      color: var(--text-muted);
+      font-size: 0.875rem;
+    }
+
+    /* Responsive */
+    @media (max-width: 640px) {
+      .hero-title {
+        font-size: 2.25rem;
+      }
+
+      .hero-subtitle {
+        font-size: 1rem;
+      }
+
+      .profile-image {
+        width: 10rem;
+        height: 10rem;
+      }
+
+      .profile-image-inner svg {
+        width: 5rem;
+        height: 5rem;
+      }
+
+      .section-title {
+        font-size: 1.75rem;
+      }
+
+      .btn {
+        padding: 0.75rem 1.5rem;
+        font-size: 0.875rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="container">
+      <a href="#home" class="navbar-brand">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+          <circle cx="12" cy="7" r="4"></circle>
+        </svg>
+        Portfolio
+      </a>
+      <button class="menu-toggle" onclick="toggleMenu()">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="3" y1="12" x2="21" y2="12"></line>
+          <line x1="3" y1="6" x2="21" y2="6"></line>
+          <line x1="3" y1="18" x2="21" y2="18"></line>
+        </svg>
+      </button>
+      <div class="navbar-nav" id="navbarNav">
+        <a href="#home" class="active">Home</a>
+        <a href="#about">About</a>
+        <a href="#skills">Skills</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section id="home" class="hero">
+    <div class="glow-1"></div>
+    <div class="glow-2"></div>
+
+    <div class="hero-content">
+      <div class="profile-wrapper">
+        <div class="profile-image">
+          <div class="profile-image-inner">
+       <img src="./profile.jpg" width="200">
+
+
+
+        
+        </div>
+        </div>
+        <div class="status-badge"></div>
+      </div>
+
+      <p class="welcome">✨ Hai, selamat datang di website portofolio saya</p>
+      <h1 class="hero-title">Muhammad Sultan Arif</h1>
+      <p class="hero-subtitle">
+        Informatics Student Universitas Muhammadiyah Jakarta • Website • Networking • Security
+      </p>
+
+      <div class="cta-buttons">
+        <a href="#about" class="btn btn-primary">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+            <circle cx="12" cy="7" r="4"></circle>
+          </svg>
+          Tentang Saya
+        </a>
+        <a href="#contact" class="btn btn-outline">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="2" y="4" width="20" height="16" rx="2"></rect>
+            <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
+          </svg>
+          Hubungi Saya
+        </a>
+      </div>
+    </div>
+
+    <div class="scroll-down">
+      <a href="#about">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="m6 9 6 6 6-6"></path>
+        </svg>
+      </a>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section id="about">
+    <div class="container">
+      <div class="about-card">
+        <h2 class="about-title">
+          <span style="font-size: 1.5rem;">👋</span>
+          Deskripsi Tentang Saya
+        </h2>
+        <div class="separator"></div>
+        <p class="about-text">
+          Ketertarikan saya berada pada pengembangan web, jaringan komputer, dan keamanan sistem.
+          Saya terbiasa mempelajari teknologi secara mandiri serta menggunakan berbagai tools IT untuk
+          mendukung proses pengembangan dan pengelolaan sistem. Saya mampu bekerja secara mandiri
+          maupun dalam tim dan terus berupaya meningkatkan kemampuan secara berkelanjutan.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Skills Section -->
+  <section id="skills" class="skills-section">
+    <div class="container">
+      <h2 class="section-title">💼 Skills & Tools</h2>
+
+      <div class="skills-grid">
+        <!-- Web & Programming -->
+        <div class="skill-card">
+          <div class="skill-header">
+            <div class="skill-icon blue">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="16 18 22 12 16 6"></polyline>
+                <polyline points="8 6 2 12 8 18"></polyline>
+              </svg>
+            </div>
+            <h3 class="skill-title">Web & Programming</h3>
+          </div>
+          <ul class="skill-list">
+            <li><span class="skill-dot blue"></span>HTML</li>
+            <li><span class="skill-dot blue"></span>CSS</li>
+            <li><span class="skill-dot blue"></span>PHP</li>
+            <li><span class="skill-dot blue"></span>Java (Basic)</li>
+            <li><span class="skill-dot blue"></span>phython (pembelajaran mesin)</li>
+          </ul>
+        </div>
+
+        <!-- Networking & Security -->
+        <div class="skill-card">
+          <div class="skill-header">
+            <div class="skill-icon green">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"></path>
+              </svg>
+            </div>
+            <h3 class="skill-title">Networking & Security</h3>
+          </div>
+          <ul class="skill-list">
+            <li><span class="skill-dot green"></span>Mikrotik</li>
+            <li><span class="skill-dot green"></span>Winbox</li>
+            <li><span class="skill-dot green"></span>Cisco (Basic)</li>
+            <li><span class="skill-dot green"></span>Crimping Cable</li>
+            <li><span class="skill-dot green"></span>Kali Linux</li>
+            <li><span class="skill-dot green"></span>Oracle VirtualBox</li>
+            <li><span class="skill-dot green"></span>Wireshark</li>
+          </ul>
+        </div>
+
+        <!-- Design & Productivity -->
+        <div class="skill-card">
+          <div class="skill-header">
+            <div class="skill-icon pink">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="13.5" cy="6.5" r=".5"></circle>
+                <circle cx="17.5" cy="10.5" r=".5"></circle>
+                <circle cx="8.5" cy="7.5" r=".5"></circle>
+                <circle cx="6.5" cy="12.5" r=".5"></circle>
+                <path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.926 0 1.648-.746 1.648-1.688 0-.437-.18-.835-.437-1.125-.29-.289-.438-.652-.438-1.125a1.64 1.64 0 0 1 1.668-1.668h1.996c3.051 0 5.555-2.503 5.555-5.555C21.965 6.012 17.461 2 12 2z"></path>
+              </svg>
+            </div>
+            <h3 class="skill-title">Design & Productivity</h3>
+          </div>
+          <ul class="skill-list">
+            <li><span class="skill-dot pink"></span>Canva</li>
+            <li><span class="skill-dot pink"></span>Figma (Learning)</li>
+            <li><span class="skill-dot pink"></span>Microsoft Word</li>
+            <li><span class="skill-dot pink"></span>Microsoft Excel</li>
+            <li><span class="skill-dot pink"></span>PowerPoint</li>
+          </ul>
+        </div>
+
+        <!-- Language -->
+        <div class="skill-card">
+          <div class="skill-header">
+            <div class="skill-icon orange">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"></circle>
+                <line x1="2" y1="12" x2="22" y2="12"></line>
+                <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+              </svg>
+            </div>
+            <h3 class="skill-title">Language</h3>
+          </div>
+          <ul class="skill-list">
+            <li><span class="skill-dot orange"></span>Indonesia (Native)</li>
+            <li><span class="skill-dot orange"></span>English (Basic, improving)</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact">
+    <div class="container">
+      <h2 class="section-title">
+        <span style="display: inline-block; margin-right: 0.5rem;">📬</span>
+        Hubungi Saya
+      </h2>
+
+      <div class="contact-card">
+        <p class="contact-text">Mari terhubung dan berkolaborasi!</p>
+
+        <div class="contact-links">
+          <a href="mailto:muhamadsultanarf2@gmail.com" class="contact-link">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#a855f7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="2" y="4" width="20" height="16" rx="2"></rect>
+              <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
+            </svg>
+            muhamadsultanarf2@gmail.com
+          </a>
+            </svg>
+          </a>
+        </div>
+
+        <div class="separator"></div>
+
+        
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container footer-content">
+      <div class="footer-social">
+        <a href="https://github.com/muhamadsultanarf2-wq" target="_blank" class="social-link" aria-label="GitHub">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+          </svg>
+        </a>
+        <a href="https://linkedin.com/in/muhammad-sultan-arif" target="_blank" class="social-link" aria-label="LinkedIn">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+          </svg>
+        </a>
+        <a href="https://instagram.com/sltanrf_" target="_blank" class="social-link" aria-label="Instagram">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+          </svg>
+        </a>
+        <a href="https://wa.me/6289654873932" target="_blank" class="social-link" aria-label="WhatsApp">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/>
+          </svg>
+        </a>
+      </div>
+      <div class="footer-separator"></div>
+      <p class="copyright">© 2026 Muhammad Sultan Arif</p>
+    </div>
+  </footer>
+
+  <script>
+    // Smooth scroll for navigation
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+          });
+        }
+      });
+    });
+
+    // Mobile menu toggle
+    function toggleMenu() {
+      const nav = document.getElementById('navbarNav');
+      nav.classList.toggle('show');
+    }
+
+    // Active section highlighting
+    window.addEventListener('scroll', () => {
+      const sections = document.querySelectorAll('section');
+      const navLinks = document.querySelectorAll('.navbar-nav a');
+
+      let current = '';
+      sections.forEach(section => {
+        const sectionTop = section.offsetTop;
+        const sectionHeight = section.clientHeight;
+        if (window.scrollY >= sectionTop - 100) {
+          current = section.getAttribute('id');
+        }
+      });
+
+      navLinks.forEach(link => {
+        link.classList.remove('active');
+        if (link.getAttribute('href') === '#' + current) {
+          link.classList.add('active');
+        }
+      });
+    });
+  </script>
+</body>
+</html>

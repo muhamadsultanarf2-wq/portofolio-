@@ -1,0 +1,196 @@
+.profile-image-inner {
+  width: 160px;
+  height: 160px;
+  border-radius: 50%;
+  overflow: hidden; /* KUNCI UTAMA */
+}
+
+.profile-image-inner img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 999;
+
+  background: rgba(15, 23, 42, 0.55);
+  backdrop-filter: blur(18px) saturate(160%);
+  -webkit-backdrop-filter: blur(18px) saturate(160%);
+
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+.navbar-nav a {
+  position: relative;
+  color: #9ca3af;
+  text-decoration: none;
+  padding: 10px 14px;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+.navbar-nav a::after {
+  content: "";
+  position: absolute;
+  inset: -12px;
+  background: radial-gradient(
+    120px circle at var(--x, 50%) var(--y, 50%),
+    rgba(168, 85, 247, 0.35),
+    transparent 60%
+  );
+  opacity: 0;
+  transition: opacity 0.25s ease;
+  pointer-events: none;
+}
+.navbar-nav a:hover {
+  color: #ffffff;
+}
+
+.navbar-nav a:hover::after {
+  opacity: 1;
+}
+.navbar-nav a:nth-child(1)::after {
+  background: radial-gradient(120px circle at var(--x,50%) var(--y,50%),
+    rgba(99, 102, 241, 0.45), transparent 60%);
+}
+
+.navbar-nav a:nth-child(2)::after {
+  background: radial-gradient(120px circle at var(--x,50%) var(--y,50%),
+    rgba(34, 197, 94, 0.45), transparent 60%);
+}
+
+.navbar-nav a:nth-child(3)::after {
+  background: radial-gradient(120px circle at var(--x,50%) var(--y,50%),
+    rgba(236, 72, 153, 0.45), transparent 60%);
+}
+
+.navbar-nav a:nth-child(4)::after {
+  background: radial-gradient(120px circle at var(--x,50%) var(--y,50%),
+    rgba(249, 115, 22, 0.45), transparent 60%);
+}
+.navbar-nav a.active {
+  color: #ffffff;
+}
+
+.navbar-nav a.active::after {
+  opacity: 1;
+}
+.navbar-nav a::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: -6px;
+  transform: translateX(-50%);
+  width: 0;
+  height: 2px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    currentColor,
+    transparent
+  );
+  transition: width 0.3s ease;
+}
+
+.navbar-nav a:hover::before,
+.navbar-nav a.active::before {
+  width: 120%;
+}
+.skill-card {
+  position: relative;
+  overflow: hidden;
+
+  background: rgba(15, 23, 42, 0.55);
+  backdrop-filter: blur(16px) saturate(160%);
+  -webkit-backdrop-filter: blur(16px) saturate(160%);
+
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 14px;
+
+  transition: transform 0.35s ease, border-color 0.35s ease;
+}
+.skill-card::before {
+  content: "";
+  position: absolute;
+  inset: -40%;
+  background: radial-gradient(
+    300px circle at center,
+    rgba(168, 85, 247, 0.35),
+    transparent 60%
+  );
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  pointer-events: none;
+}
+.skill-card:hover {
+  transform: translateY(-6px) scale(1.03);
+  border-color: rgba(255, 255, 255, 0.18);
+}
+
+.skill-card:hover::before {
+  opacity: 1;
+}
+.skill-card:nth-child(1)::before {
+  background: radial-gradient(
+    300px circle at center,
+    rgba(99, 102, 241, 0.45),
+    transparent 60%
+  );
+}
+.skill-card:nth-child(2)::before {
+  background: radial-gradient(
+    300px circle at center,
+    rgba(34, 197, 94, 0.45),
+    transparent 60%
+  );
+}
+.skill-card:nth-child(3)::before {
+  background: radial-gradient(
+    300px circle at center,
+    rgba(236, 72, 153, 0.45),
+    transparent 60%
+  );
+}
+.skill-card:nth-child(4)::before {
+  background: radial-gradient(
+    300px circle at center,
+    rgba(249, 115, 22, 0.45),
+    transparent 60%
+  );
+}
+.skill-dot {
+  animation: pulseDot 2.5s ease-in-out infinite;
+}
+
+@keyframes pulseDot {
+  0%, 100% { opacity: 0.5; }
+  50% { opacity: 1; }
+}
+.profile-wrapper::before,
+.profile-wrapper::after,
+.profile-image::before,
+.profile-image::after,
+.profile-image-inner::before,
+.profile-image-inner::after {
+  content: none !important;
+  display: none !important;
+}
+.hero .glow-1,
+.hero .glow-2 {
+  display: none;
+}
+.profile-image {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.profile-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+}
